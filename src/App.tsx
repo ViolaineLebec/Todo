@@ -2,15 +2,26 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0);
   const [fourniture, setFourniture] = useState("Colle");
-  const [liste, setListe] = useState([fourniture]);
+  const [liste, setListe] = useState([{ id: 1, text: "Colle", done: false }]);
 
-
-  function modifier(indexVisé, newText) {
-    setListe((listeActive) => listeActive.map((item, index) => index === indexVisé ? newText : item));
+  function ajouterTache(){
+    setListe([...liste, {id: Date.now(), text:fourniture, done: false}]);
   }
 
+  function changerDone(selectedId){
+    setListe(liste.map(item => 
+    item.id === selectedId ? { ...item, done: !item.done } : item
+  ));
+  }
+
+  function modifierText(indexVisé, newText) {
+    setListe(liste.map(item => item.id === indexVisé ? {...item, text: newText} : item));
+  }
+
+  function supprimerTache(index) {
+    setListe(liste.filter(item => item.id != index));
+  }
 
   return (
     <>
@@ -20,15 +31,15 @@ function App() {
           <h2>Liste de fournitures à acheter</h2>
 
           <ul>
-            {liste.map((fourn, index) => (
-              <li key={index}>
-                <input type="checkbox" className="m-3" />
-                <input type="text" className='m-2 border' value={fourn} onChange={(e) => modifier(index, e.target.value)} />
+            {liste.map((objet) => (
+              <li key={objet.id}>
+                <input type="checkbox" className='m-3' checked={objet.done} onChange={() => changerDone(objet.id)} />
+                <input type="text" className={`m-3 border ${objet.done ? "line-through" : ""}`} defaultValue={objet.text} onChange={(e) => modifierText(objet.id, objet.text)} />
 
                 <button
                   type="button"
                   className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => setListe((liste) => liste.filter((e) => e != fourn))}
+                  onClick={() => supprimerTache(objet.id)}
                 >
                   Supprimer
                 </button>
@@ -42,9 +53,9 @@ function App() {
             onChange={(e) => setFourniture(e.target.value)}
           />
           <button
-            type=""
+            type="button"
             className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => setListe((liste) => [...liste, fourniture])}
+            onClick={() => ajouterTache(fourniture)}
             onBlur={() => setFourniture("")}
 
           >
