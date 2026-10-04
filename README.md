@@ -1,4 +1,30 @@
-# React + TypeScript + Vite
+# Créer une application ToDo List fonctionnelle et ergonomique permettant de gérer des tâches (projet Simplon)
+## Contexte du projet
+Vous devez créer une application web permettant à un utilisateur de gérer une liste de tâches au quotidien.
+
+L'objectif est de proposer une interface simple permettant de visualiser les tâches à réaliser et de suivre leur avancement.
+## Modalités pédagogiques
+Individuel.
+Objectif (1/2J):
+
+### L'application devra permettre à l'utilisateur de :
+ajouter une tâche ;
+consulter ses tâches ;
+modifier une tâche ;
+supprimer une tâche ;
+indiquer qu'une tâche est terminée.
+Vous êtes libre de proposer une organisation et une interface adaptées à l'utilisation de l'application.
+
+### Critères de performance
+L'application est fonctionnelle.
+Les fonctionnalités principales sont présentes.
+L'interface est claire et compréhensible.
+Les tâches peuvent être correctement gérées.
+L'application est utilisable par l'utilisateur.
+Le code est organisé et compréhensible.
+L’app est responsive
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
